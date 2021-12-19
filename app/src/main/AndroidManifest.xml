@@ -10,10 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GetInfoAboutAlbums">
-        <meta-data
-            android:name="com.zdez.getinfoaboutalbums.api"
-            android:value="${API_KEY}"
-            />
         <activity
             android:name=".MainActivity"
             android:exported="true"
