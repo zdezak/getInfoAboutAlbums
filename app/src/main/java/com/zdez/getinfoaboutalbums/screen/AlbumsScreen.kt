@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 
 @ExperimentalFoundationApi
 @Composable
-fun AlbumsScreen(artistName:String, navController: NavController){
+fun AlbumsScreen(artistName: String, navController: NavController) {
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "List of albums") },
             navigationIcon = {

@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import com.zdez.getinfoaboutalbums.navigation.Screen
 
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController) {
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Home") },
             navigationIcon = {
@@ -26,7 +26,8 @@ fun HomeScreen(navController: NavController){
             modifier = Modifier
                 .fillMaxHeight()
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(16.dp)) {
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
@@ -35,7 +36,7 @@ fun HomeScreen(navController: NavController){
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 OutlinedButton(onClick = {
-                    navController.navigate(Screen.ListScreen.route+"/"+text)
+                    navController.navigate(Screen.ListScreen.route + "/" + text)
                 },
                     modifier = Modifier.fillMaxWidth()
                 ) {

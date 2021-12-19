@@ -14,25 +14,27 @@ import com.zdez.getinfoaboutalbums.screen.ListScreen
 
 @ExperimentalFoundationApi
 @Composable
-fun MainScreen(){
+fun MainScreen() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.HomeScreen.route){
+    NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
         composable(Screen.HomeScreen.route) { HomeScreen(navController = navController) }
-        composable(Screen.ListScreen.route+ "/{artistName}", arguments = listOf(
-            navArgument("artistName"){
+        composable(Screen.ListScreen.route + "/{artistName}", arguments = listOf(
+            navArgument("artistName") {
                 type = NavType.StringType
                 defaultValue = "amatory"
             }
-        )) { entry->
-            ListScreen(artistName = entry.arguments!!.getString("artistName")!!, navController = navController)
+        )) { entry ->
+            ListScreen(artistName = entry.arguments!!.getString("artistName")!!,
+                navController = navController)
         }
-        composable(Screen.AlbumsScreen.route+"/{artistName}", arguments = listOf(
-            navArgument("artistName"){
+        composable(Screen.AlbumsScreen.route + "/{artistName}", arguments = listOf(
+            navArgument("artistName") {
                 type = NavType.StringType
                 defaultValue = "amatory"
             }
-        )) { entry->
+        )) { entry ->
             AlbumsScreen(artistName = entry.arguments!!.getString("artistName")!!,
-                navController = navController) }
+                navController = navController)
+        }
     }
 }

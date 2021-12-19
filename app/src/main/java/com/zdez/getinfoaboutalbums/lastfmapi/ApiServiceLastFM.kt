@@ -2,8 +2,8 @@ package com.zdez.getinfoaboutalbums.lastfmapi
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zdez.getinfoaboutalbums.dataclasses.ListOfAlbums
-import com.zdez.getinfoaboutalbums.dataclasses.ListOfArtists
+import com.zdez.getinfoaboutalbums.dataclasses.album.ListOfAlbums
+import com.zdez.getinfoaboutalbums.dataclasses.artist.ListOfArtists
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -25,7 +25,7 @@ interface ApiServiceLastFM {
         @Query("method") method: String = "artist.search",
         @Query("artist") artist: String,
         @Query("api_key") api_key: String,
-        @Query("format") format: String = "json"
+        @Query("format") format: String = "json",
     ): Call<ListOfArtists>
 
     @GET("2.0/?method=artist.getTopAlbums")
@@ -33,10 +33,11 @@ interface ApiServiceLastFM {
         @Query("artist") artist: String,
         @Query("mbid") mbid: String,
         @Query("api_key") api_key: String,
-        @Query("format") format: String = "json"
+        @Query("format") format: String = "json",
     ): Call<ListOfAlbums>
 }
-object ApiLastFm{
+
+object ApiLastFm {
     val retrofitService: ApiServiceLastFM by lazy {
         retrofit.create(ApiServiceLastFM::class.java)
     }
