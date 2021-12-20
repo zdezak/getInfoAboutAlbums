@@ -14,10 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.zdez.getinfoaboutalbums.navigation.Screen
+import com.zdez.getinfoaboutalbums.viewmodels.ArtistsViewModel
 
 @Composable
-fun ListScreen(artistName: String, navController: NavController) {
-    val listValue = listOf("one", "two", "three")
+fun ListScreen( artistName: String, navController: NavController, viewModel: ArtistsViewModel = ArtistsViewModel(artistName)) {
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Result first search") },
             navigationIcon = {
@@ -26,7 +26,7 @@ fun ListScreen(artistName: String, navController: NavController) {
         )
     }
     ) {
-        var text by remember { mutableStateOf("Введите название") }
+        var text by remember { mutableStateOf(artistName) }
         Column(verticalArrangement = Arrangement.Top,
             modifier = Modifier
                 .fillMaxHeight()
@@ -41,7 +41,7 @@ fun ListScreen(artistName: String, navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 OutlinedButton(onClick = {
-                    //TODO
+                    viewModel.getArtist(text)
                 },
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -51,17 +51,17 @@ fun ListScreen(artistName: String, navController: NavController) {
             LazyColumn(verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(listValue) { item ->
+                items(viewModel.artist) { item ->
                     Card(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Text(text = item,
+                        Text(text = item.name,
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(16.dp)
                                 .clickable {
-                                    navController.navigate(Screen.AlbumsScreen.route + "/" + item)
+                                    navController.navigate(Screen.AlbumsScreen.route + "/" + item.name)
                                 })
                     }
                 }
